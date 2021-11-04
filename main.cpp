@@ -28,6 +28,7 @@ int main() {
         //window.draw(shape);
         window.draw(sprite);
         window.draw(T.load_Level(maptextur));
+        //window.draw(entity);
         window.display();
     }
     return 0;
