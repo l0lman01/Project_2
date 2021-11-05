@@ -133,7 +133,6 @@ vector<string> tile_strings = {
 
 };
 
-
 Sprite Tilemap::load_Level(sf::Texture& t)
 {
     sf::Sprite sprite;
@@ -142,5 +141,16 @@ Sprite Tilemap::load_Level(sf::Texture& t)
     sprite.Sprite::setTextureRect(rect);
     sprite.setTexture(t);
     sprite.scale(3, 3);
+
+    for (auto& str : tile_strings)
+    {
+        int i = 0;
+
+        for (int i = 0; i < str.length(); i = i + 3) {
+            cout << str.substr(i, 2);
+        }
+    };
+
     return sprite;
+
 }

@@ -13,6 +13,7 @@ int main() {
     Sprite sprite;
     Tilemap T;
     maptextur.loadFromFile("foresttiles2-t.png");
+    (T.load_Level(maptextur));
 
     while (window.isOpen())
     {
@@ -47,7 +48,6 @@ int main() {
 
         //window.draw(shape);
         //window.draw(sprite);
-        window.draw(T.load_Level(maptextur));
         window.draw(entity);
         window.display();
     }
