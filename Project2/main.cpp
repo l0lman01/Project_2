@@ -6,20 +6,17 @@ using namespace sf;
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
-    sf::RectangleShape entity(sf::Vector2f(100.f, 100.f));
-    Texture texture;
-    Texture maptextur;
-    texture.loadFromFile("ghost.png");
+    sf:RectangleShape player(sf::Vector2f(100.f, 100.f));
+    Texture playericon;
     Sprite sprite;
-    Tilemap T;
-    maptextur.loadFromFile("foresttiles2-t.png");
-
+    Tilemap map;
+    playericon.loadFromFile("ghost.png");
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
 
@@ -27,28 +24,25 @@ int main() {
             switch (event.key.code) {
                 //Haut
             case sf::Keyboard::Z:
-                entity.move(0.f, -2.f);
+                player.move(0.f, -2.f);
                 break;
                 //Down
             case sf::Keyboard::S:
-                entity.move(0.f, 2.f);
+                player.move(0.f, 2.f);
                 break;
                 //Droite
             case sf::Keyboard::D:
-                entity.move(2.f, 0.f);
+                player.move(2.f, 0.f);
                 break;
                 //Gauche
             case sf::Keyboard::Q:
-                entity.move(-2.f, 0.f);
+                player.move(-2.f, 0.f);
                 break;
             }
         }
         window.clear();
 
-        //window.draw(shape);
-        //window.draw(sprite);
-        window.draw(T.load_Level(maptextur));
-        window.draw(entity);
+        map.drawMap(window);
         window.display();
     }
     return 0;

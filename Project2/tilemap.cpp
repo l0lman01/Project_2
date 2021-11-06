@@ -7,6 +7,7 @@
 using namespace sf;
 using namespace std;
 
+typedef Vector2f v;
 typedef Vector2i vec2i;
 
 map<string, vec2i> tile_offsets = {
@@ -130,17 +131,54 @@ vector<string> tile_strings = {
     "                     F1 FN FN A4 -- ",
     "      R1 R2    F1 FN A4 -- -- -- -- ",
     "R1 RH R4 R3 R2 FW -- -- -- -- -- -- ",
-
 };
 
+void Tilemap::load_level() {
+    Tilemap::Tiles;
+    Tilemap::groundTiles;
+    Texture tiles_texture;
+    Sprite ground;
+    tiles_texture.loadFromFile("foresttiles2-t.png");
+    auto offset = tile_offsets["ground"];
+    ground.setTexture(tiles_texture);
+    ground.setTextureRect(IntRect(offset *16, { 16,16 }));
+    ground.setScale(4, 4);
 
-Sprite Tilemap::load_Level(sf::Texture& t)
-{
-    sf::Sprite sprite;
-    Vector2i v = tile_offsets.find(aliasses.find("GD")->second)->second;
-    sf::IntRect rect(v * 16, { 16,16 });
-    sprite.Sprite::setTextureRect(rect);
-    sprite.setTexture(t);
-    sprite.scale(3, 3);
-    return sprite;
+    int row = 0;
+    int scale = 4;
+    for (auto& lineMap : tile_strings) {
+        for (int i = 0; i < lineMap.length(); ++i) {
+            if (i * 3 + 2 >= lineMap.length())
+                break;
+            string id = lineMap.substr(i * 3, 2);
+            if (id == "  ") id = "GD";
+            if (aliasses.count(id)) {
+                auto name = aliasses[id];
+                if (tile_offsets.count(name)) {
+                    if (id != "GD") {
+                        auto offset = tile_offsets[name];
+                        Sprite tile;
+                        tile.setTexture(tiles_texture);
+                        tile.setTextureRect(IntRect(offset *16, { 16,16 }));
+                        tile.setPosition(v(scale * (i * 16), scale * (row * 16)));
+                        tile.setScale(4, 4);
+                        Tiles.push_back(tile);
+
+                    }
+                    auto tile_ground_add = ground;
+                    tile_ground_add.setPosition(v(scale * (i * 16), scale * (row * 16)));
+                    groundTiles.push_back(tile_ground_add);
+                }
+            }
+        }
+    }
+}
+
+void Tilemap::drawMap(sf::RenderWindow& map){
+    for (auto& sprite : groundTiles) {
+        map.draw(sprite);
+    }
+    for (auto& sprite : groundTiles) {
+        map.draw(sprite);
+    }
 }

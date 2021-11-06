@@ -153,6 +153,9 @@
   <ItemGroup>
     <ClInclude Include="..\tilemap.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="foresttiles2-t.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

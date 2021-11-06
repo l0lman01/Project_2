@@ -2,7 +2,9 @@
 
 class Tilemap {
 public:
-	sf::Sprite load_Level(sf::Texture& t);
-private:
-	std::vector<sf::Sprite> Tile;
+	void load_level();
+	void drawMap(sf::RenderWindow& map);
+	std::vector<sf::Sprite> Tiles;
+	std::vector<sf::Sprite> groundTiles;
+protected:
 };
