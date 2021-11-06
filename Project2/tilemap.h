@@ -7,4 +7,5 @@ public:
 	std::vector<sf::Sprite> Tiles;
 	std::vector<sf::Sprite> groundTiles;
 protected:
+	sf::Texture tiles_texture;
 };

@@ -1,6 +1,7 @@
 #pragma once
 
-class PlayerSprite{
+class Player {
 public:
-	void playerSprite(sf::Texture& p);
+	int lifePoints;
+
 };

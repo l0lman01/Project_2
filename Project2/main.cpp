@@ -11,6 +11,8 @@ int main() {
     Sprite sprite;
     Tilemap map;
     playericon.loadFromFile("ghost.png");
+    map.load_level();
+
     while (window.isOpen())
     {
         sf::Event event;

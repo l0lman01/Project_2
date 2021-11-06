@@ -136,7 +136,6 @@ vector<string> tile_strings = {
 void Tilemap::load_level() {
     Tilemap::Tiles;
     Tilemap::groundTiles;
-    Texture tiles_texture;
     Sprite ground;
     tiles_texture.loadFromFile("foresttiles2-t.png");
     auto offset = tile_offsets["ground"];
