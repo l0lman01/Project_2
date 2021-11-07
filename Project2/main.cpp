@@ -1,16 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tilemap.h"
+#include"player.h"
 
 using namespace sf;
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
     sf:RectangleShape player(sf::Vector2f(100.f, 100.f));
-    Texture playericon;
-    Sprite sprite;
     Tilemap map;
-    playericon.loadFromFile("ghost.png");
+    Player playericon;
     map.load_level();
 
     while (window.isOpen())
@@ -45,6 +44,7 @@ int main() {
         window.clear();
 
         map.drawMap(window);
+        playericon.drawPlayer(window);
         window.display();
     }
     return 0;
