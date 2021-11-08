@@ -7,7 +7,7 @@
 using namespace sf;
 using namespace std;
 
-typedef Vector2f v;
+typedef Vector2f vec2;
 typedef Vector2i vec2i;
 
 map<string, vec2i> tile_offsets = {
@@ -158,18 +158,19 @@ void Tilemap::load_level() {
                         auto offset = tile_offsets[name];
                         Sprite tile;
                         tile.setTexture(tiles_texture);
-                        tile.setTextureRect(IntRect(offset *16, { 16,16 }));
-                        tile.setPosition(v(scale * (i * 16), scale * (row * 16)));
+                        tile.setTextureRect(IntRect(offset * 16, { 16,16 }));
+                        tile.setPosition(vec2(scale * (i * 16), scale * (row * 16)));
                         tile.setScale(4, 4);
                         Tiles.push_back(tile);
 
                     }
                     auto tile_ground_add = ground;
-                    tile_ground_add.setPosition(v(scale * (i * 16), scale * (row * 16)));
+                    tile_ground_add.setPosition(vec2(scale * (i * 16), scale * (row * 16)));
                     groundTiles.push_back(tile_ground_add);
                 }
             }
         }
+        row++;
     }
 }
 
@@ -177,7 +178,7 @@ void Tilemap::drawMap(sf::RenderWindow& map){
     for (auto& sprite : groundTiles) {
         map.draw(sprite);
     }
-    for (auto& sprite : groundTiles) {
+    for (auto& sprite : Tiles ) {
         map.draw(sprite);
     }
 }
