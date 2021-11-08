@@ -10,8 +10,10 @@ int main() {
     sf:RectangleShape player(sf::Vector2f(100.f, 100.f));
     Tilemap map;
     Player playericon;
+    Texture playerSprite;
+    playerSprite.loadFromFile("ghost.png");
+    player.setTexture(&playerSprite);
     map.load_level();
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -44,6 +46,7 @@ int main() {
         window.clear();
 
         map.drawMap(window);
+        window.draw(player);
         playericon.drawPlayer(window);
         window.display();
     }
