@@ -1,21 +1,27 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tilemap.h"
-#include"player.h"
+#include "Player.h"
+#include "Animation.h"
+#include "lifebar.h"
 
 using namespace sf;
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
-    sf:RectangleShape player(sf::Vector2f(100.f, 100.f));
+
     Tilemap map;
-    Player playericon;
-    Texture playerSprite;
-    playerSprite.loadFromFile("ghost.png");
-    player.setTexture(&playerSprite);
+    Texture playerTexture;
+    playerTexture.loadFromFile("characters.png");
+    Player player(&playerTexture, Vector2u(8, 9), 0.3f, 100.0f);
+
+    float deltaTime = 0.5f;
+    Clock clock;
+
     map.load_level();
-    while (window.isOpen())
-    {
+    while (window.isOpen()){
+        deltaTime = clock.restart().asSeconds();
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -23,31 +29,14 @@ int main() {
                 window.close();
             }
 
-            //azerty
-            switch (event.key.code) {
-                //Haut
-            case sf::Keyboard::Z:
-                player.move(0.f, -2.f);
-                break;
-                //Down
-            case sf::Keyboard::S:
-                player.move(0.f, 2.f);
-                break;
-                //Droite
-            case sf::Keyboard::D:
-                player.move(2.f, 0.f);
-                break;
-                //Gauche
-            case sf::Keyboard::Q:
-                player.move(-2.f, 0.f);
-                break;
-            }
+
         }
+
+        player.Update(deltaTime);
         window.clear();
 
-        map.drawMap(window);
-        window.draw(player);
-        playericon.drawPlayer(window);
+        map.drawMap(window); //Afficher la map
+        player.drawPlayer(window);
         window.display();
     }
     return 0;

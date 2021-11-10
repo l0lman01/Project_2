@@ -147,13 +147,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="lifebar.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="player.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\tilemap.h" />
-    <ClInclude Include="player.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="lifebar.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="tilemap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
