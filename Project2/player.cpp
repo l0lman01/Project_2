@@ -77,16 +77,14 @@ void Player::Update(float deltaTime){
 
 	if (movement.x == 0.0f && movement.y == 0.0f) {
 		isMoving = false;
-		body.setTextureRect(anime.)
+		anime.Update(row, deltaTime, 1, 1);
 	}
 	else{
-		if (movement.y > 0.0f || movement.x > 0.0f) {
 			isMoving = true;
-		}
-		anime.Update(row, deltaTime, 0, 2);
-		body.setTextureRect(anime.uvRect);
-		body.move(movement);
+			anime.Update(row, deltaTime, 0, 3);
 	}
+	body.setTextureRect(anime.uvRect);
+	body.move(movement);
 	std::cout << anime.uvRect.left << " " << anime.uvRect.top << " " << endl;
 }
 
