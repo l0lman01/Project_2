@@ -15,7 +15,7 @@ int main() {
     playerTexture.loadFromFile("characters.png");
     Player player(&playerTexture, Vector2u(12, 8), 0.5f, 100.0f);
 
-    float deltaTime = 0.5f;
+    float deltaTime = 0.1f;
     Clock clock;
 
     map.load_level();

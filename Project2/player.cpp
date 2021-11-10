@@ -6,6 +6,7 @@
 
 typedef sf::Vector2i vec2i;
 using namespace sf;
+using namespace std;
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed) :
 	anime(texture, imageCount, switchTime) {
@@ -15,9 +16,8 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setSize(sf::Vector2f(100.f, 100.f));
 	body.setPosition(100.f, 100.f);
 	body.setTexture(texture);
-
-
 }
+
 void Player::treat_key_release(Keyboard::Key key_code){
 	switch (key_code) {
 	case Keyboard::W:
@@ -51,32 +51,43 @@ void Player::treat_key_press(Keyboard::Key key_code){
 	}
 }
 
-
 void Player::Update(float deltaTime){
 	sf::Vector2f movement(0.0f, 0.0f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		movement.x = -speed * deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		row = 1;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		movement.x = speed * deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+		row = 2;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
 		movement.y = -speed * deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		row = 3;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		movement.y = speed * deltaTime;
+		row = 0;
+	}
+
 
 	if (movement.x == 0.0f && movement.y == 0.0f) {
-		row = 1;
 		isMoving = false;
+		body.setTextureRect(anime.)
 	}
 	else{
-		row = 2;
 		if (movement.y > 0.0f || movement.x > 0.0f) {
 			isMoving = true;
 		}
-		anime.Update(row, deltaTime, isMoving);
+		anime.Update(row, deltaTime, 0, 2);
 		body.setTextureRect(anime.uvRect);
 		body.move(movement);
 	}
+	std::cout << anime.uvRect.left << " " << anime.uvRect.top << " " << endl;
 }
 
 void Player::drawPlayer(sf::RenderWindow& player){
