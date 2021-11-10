@@ -13,29 +13,39 @@ int main() {
     Tilemap map;
     Texture playerTexture;
     playerTexture.loadFromFile("characters.png");
-    Player player(&playerTexture, Vector2u(8, 9), 0.3f, 100.0f);
+    Player player(&playerTexture, Vector2u(12, 8), 0.5f, 100.0f);
 
     float deltaTime = 0.5f;
     Clock clock;
 
     map.load_level();
+
+
     while (window.isOpen()){
         deltaTime = clock.restart().asSeconds();
 
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed) {
+        while (window.pollEvent(event)){
+            switch (event.type) {
+            case sf::Event::KeyPressed:
+                player.treat_key_press(event.key.code);
+                break;
+            case sf::Event::KeyReleased:
+                player.treat_key_release(event.key.code);
+                break;
+            case sf::Event::Closed:
                 window.close();
+                break;
             }
 
 
         }
 
-        player.Update(deltaTime);
+        
         window.clear();
 
         map.drawMap(window); //Afficher la map
+        player.Update(deltaTime);
         player.drawPlayer(window);
         window.display();
     }

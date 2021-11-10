@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "player.h"
 
+typedef sf::Vector2i vec2i;
 using namespace sf;
 
-Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed):
+Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed) :
 	anime(texture, imageCount, switchTime) {
 	this->speed = speed;
 	row = 0;
@@ -15,7 +17,40 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	body.setTexture(texture);
 
 
-};
+}
+void Player::treat_key_release(Keyboard::Key key_code){
+	switch (key_code) {
+	case Keyboard::W:
+	case Keyboard::S:
+	case Keyboard::Z:
+		movement.y = 0;
+		break;
+	case Keyboard::A:
+	case Keyboard::D:
+	case Keyboard::Q:
+		movement.x = 0;
+		break;
+	}
+}
+void Player::treat_key_press(Keyboard::Key key_code){
+	switch (key_code) {
+	case Keyboard::W:
+	case Keyboard::Z:
+		movement += vec2i(0, -1);
+		break;
+	case Keyboard::A:
+	case Keyboard::Q:
+		movement += vec2i(-1, 0);
+		break;
+	case Keyboard::S:
+		movement += vec2i(0, 1);
+		break;
+	case Keyboard::D:
+		movement += vec2i(1, 0);
+		break;
+	}
+}
+
 
 void Player::Update(float deltaTime){
 	sf::Vector2f movement(0.0f, 0.0f);
@@ -29,14 +64,13 @@ void Player::Update(float deltaTime){
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		movement.y = speed * deltaTime;
 
-
-	if (movement.x == 0.0f) {
+	if (movement.x == 0.0f && movement.y == 0.0f) {
 		row = 1;
+		isMoving = false;
 	}
-	else
-	{
+	else{
 		row = 2;
-		if (movement.x > 0.0f) {
+		if (movement.y > 0.0f || movement.x > 0.0f) {
 			isMoving = true;
 		}
 		anime.Update(row, deltaTime, isMoving);

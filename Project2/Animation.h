@@ -1,6 +1,6 @@
 #pragma once
 
-class Animation{
+class Animation {
 public:
 	bool isMoving;
 	sf::IntRect uvRect;
@@ -8,7 +8,7 @@ public:
 	Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 
 protected:
-	sf::Vector2u imageCount , currentImage;
+	sf::Vector2u imageCount, currentImage;
 	sf::Vector2i offset, size;
 	float totalTime;
 	float switchTime;
