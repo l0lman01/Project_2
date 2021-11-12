@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 using namespace sf;
 
@@ -16,7 +17,7 @@ public:
 	sf::RectangleShape body;
 	sf::Texture player_texture;
 	sf::Sprite player_sprite;
-	// Animation anime;
+	Animation anime;
 
 	std::vector<Vector2f> chemin;
 
