@@ -27,7 +27,12 @@ Vector2f interp2d(Vector2f start, Vector2f end, float coef) {
 
 void Enemy::Update(float deltaTime) {
 	Vector2f chemin;
-	std::vector<Vector2f> data = { Vector2f(390,20), Vector2f(435,20), Vector2f(435,70), Vector2f(390,70) };
+	std::vector<Vector2f> data = { 
+		Vector2f(390,20),
+		Vector2f(435,20),
+		Vector2f(435,70),
+		Vector2f(390,70)
+	};
 
 	accum += deltaTime;
 
