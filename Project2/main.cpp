@@ -12,13 +12,14 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
 
     Tilemap map;
+
     Texture playerTexture;
-    playerTexture.loadFromFile("hero.png");
-    Player player(&playerTexture, Vector2u(4, 4), 0.25f, 100.0f);
+    playerTexture.loadFromFile("characters.png");
+    Player player(&playerTexture, Vector2u(12, 8), 0.25f, 100.0f);
 
     Texture enemyTexture;
     enemyTexture.loadFromFile("characters.png");
-    Enemy enemy(&enemyTexture, Vector2u(8, 9), 0.3f, 100.0f);
+    Enemy enemy(&enemyTexture, Vector2u(12, 8), 0.3f, 100.0f);
 
     float deltaTime = 10.f;
     Clock clock;

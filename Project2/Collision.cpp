@@ -18,7 +18,7 @@ bool Collision::checkCollision(Collision& other, float push)
 	sf::Vector2f thisPosition = other.getPosition();
 	sf::Vector2f thisHalfSize = other.getHalfSize();
 
-	float delta
+	float delta;
 
 
 	return false;

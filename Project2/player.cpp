@@ -77,17 +77,19 @@ void Player::Update(float deltaTime){
 
 	if (movement.x == 0.0f && movement.y == 0.0f) {
 		isMoving = false;
-		anime.Update(row, deltaTime, 0, 0);
+		anime.Update(row, deltaTime, 4, 4);
 	}
 	else{
 			isMoving = true;
-			anime.Update(row, deltaTime, 0, 4);
+			anime.Update(row, deltaTime, 3, 6);
 	}
 	body.setTextureRect(anime.uvRect);
 	body.move(movement);
+
 	std::cout << anime.uvRect.left << " " << anime.uvRect.top << " " << endl;
 }
 
 void Player::drawPlayer(sf::RenderWindow& player){
 	player.draw(body);
+	//player.draw(sword);
 }

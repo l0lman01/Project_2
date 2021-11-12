@@ -1,5 +1,6 @@
 #pragma once
 #include "Animation.h"
+#include "Weapon.h"
 
 class Player {
 public:
@@ -19,4 +20,5 @@ protected:
 	sf::Texture player_texture;
 	sf::Sprite player_sprite;
 	Animation anime;
+	//Weapon sword;
 };
