@@ -13,7 +13,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	this->speed = speed;
 	row = 0;
 	isMoving = false;
-	body.setSize(sf::Vector2f(100.f, 100.f));
+	body.setSize(sf::Vector2f(50.f, 70.f));
 	body.setPosition(100.f, 100.f);
 	body.setTexture(texture);
 }
@@ -54,7 +54,7 @@ void Player::treat_key_press(Keyboard::Key key_code){
 void Player::Update(float deltaTime){
 	sf::Vector2f movement(0.0f, 0.0f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		movement.x = -speed * deltaTime;
 		row = 1;
 	}
@@ -64,7 +64,7 @@ void Player::Update(float deltaTime){
 		row = 2;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		movement.y = -speed * deltaTime;
 		row = 3;
 	}
@@ -77,11 +77,11 @@ void Player::Update(float deltaTime){
 
 	if (movement.x == 0.0f && movement.y == 0.0f) {
 		isMoving = false;
-		anime.Update(row, deltaTime, 1, 1);
+		anime.Update(row, deltaTime, 0, 0);
 	}
 	else{
 			isMoving = true;
-			anime.Update(row, deltaTime, 0, 3);
+			anime.Update(row, deltaTime, 0, 4);
 	}
 	body.setTextureRect(anime.uvRect);
 	body.move(movement);

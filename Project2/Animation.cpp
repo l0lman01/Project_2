@@ -6,7 +6,7 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switch
 	totalTime = 0;
 	currentImage.x = 0;
 	uvRect.width = 16;
-	uvRect.height = 16;
+	uvRect.height = 25;
 };
 
 void Animation::Update(int row, float deltaTime, int minImage, int maxImage){
