@@ -7,9 +7,10 @@
 
 using namespace sf;
 
-Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed) {
+Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed):
+		anime(texture, imageCount, switchTime) {
 		this->speed = speed;
-		row = 0;
+		row = 4;
 		isMoving = false;
 		body.setSize(sf::Vector2f(100.f, 100.f));
 		body.setPosition(100.f, 100.f);
@@ -43,4 +44,7 @@ void Enemy::Update(float deltaTime) {
 
 	Vector2f mouvement = interp2d(data[segment], data[segment+1], accum);
 	body.setPosition(mouvement);
+
+	body.setTextureRect(anime.uvRect);
+	anime.Update(row, deltaTime, 0, 3);
 };
