@@ -32,6 +32,12 @@ void Enemy::Update(float deltaTime) {
 		Vector2f(435,20),
 		Vector2f(435,70),
 		Vector2f(390,70)
+		/*
+			Créer une clock
+			Quand l'ennemi est arrivé à destination, faire arriver getelapsetime à 1
+			Quand la clock est à 1, relancer le mouvement
+			utiliser getelapsetime = 1 (pour 1 seconde)
+		*/ 
 	};
 
 	accum += deltaTime;
