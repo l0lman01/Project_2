@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "player.h"
+#include "Player.h"
 
 typedef sf::Vector2i vec2i;
 using namespace sf;
@@ -51,24 +51,21 @@ void Player::treat_key_press(Keyboard::Key key_code){
 	}
 }
 
-void Player::Update(float deltaTime){
+void Player::Update(float deltaTime, bool attacking){
 	sf::Vector2f movement(0.0f, 0.0f);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		movement.x = -speed * deltaTime;
 		row = 1;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		movement.x = speed * deltaTime;
 		row = 2;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		movement.y = -speed * deltaTime;
 		row = 3;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 		movement.y = speed * deltaTime;
 		row = 0;
@@ -85,11 +82,16 @@ void Player::Update(float deltaTime){
 	}
 	body.setTextureRect(anime.uvRect);
 	body.move(movement);
+	playerSword.setPosition(body.getPosition());
 
 	std::cout << anime.uvRect.left << " " << anime.uvRect.top << " " << endl;
 }
 
-void Player::drawPlayer(sf::RenderWindow& player){
+void Player::drawPlayer(sf::RenderWindow& player, bool attacking){
 	player.draw(body);
-	//player.draw(sword);
+	if (attacking) {
+
+		player.draw(playerSword);
+	}
+	
 }

@@ -16,7 +16,8 @@ int main() {
     Texture playerTexture;
     playerTexture.loadFromFile("characters.png");
     Player player(&playerTexture, Vector2u(12, 8), 0.25f, 100.0f);
-
+    bool attacking = false;
+    
     Texture enemyTexture;
     enemyTexture.loadFromFile("characters.png");
     Enemy enemy(&enemyTexture, Vector2u(12, 8), 0.3f, 100.0f);
@@ -35,6 +36,9 @@ int main() {
             switch (event.type) {
             case sf::Event::KeyPressed:
                 player.treat_key_press(event.key.code);
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+                    attacking = true;
+                }
                 break;
             case sf::Event::KeyReleased:
                 player.treat_key_release(event.key.code);
@@ -53,11 +57,11 @@ int main() {
         map.drawMap(window); //Afficher la map
         
         //Update
-        player.Update(deltaTime);
+        player.Update(deltaTime, attacking);
         enemy.Update(deltaTime);
 
         //Draw
-        player.drawPlayer(window);
+        player.drawPlayer(window, attacking);
         enemy.drawEnemy(window);
 
         window.display();
