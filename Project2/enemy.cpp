@@ -7,7 +7,7 @@
 
 using namespace sf;
 
-Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed):
+Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed): // initialisation générale
 		anime(texture, imageCount, switchTime) {
 		this->speed = speed;
 		row = 6;
@@ -17,7 +17,7 @@ Enemy::Enemy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, fl
 		body.setTexture(texture);
 };
 
-void Enemy::drawEnemy(sf::RenderWindow& Enemy) {
+void Enemy::drawEnemy(sf::RenderWindow& Enemy) { // affichage de l'ennemi
 	Enemy.draw(body);
 };
 
@@ -25,9 +25,9 @@ Vector2f interp2d(Vector2f start, Vector2f end, float coef) {
 	return coef * (end - start) + start;
 }
 
-void Enemy::Update(float deltaTime) {
+void Enemy::Update(float deltaTime) { // déplacement de l'ennemi : la liste correspond aux points du chemin qu'il va suivre
 	Vector2f chemin;
-	std::vector<Vector2f> data = { 
+	std::vector<Vector2f> data = {  // les points ont été doublés pour faire la pause à chaque fin de déplacement
 		Vector2f(390,20),
 		Vector2f(390,20),
 		Vector2f(435,20),
@@ -40,7 +40,7 @@ void Enemy::Update(float deltaTime) {
 		Vector2f(390,20)
 	};
 
-	accum += deltaTime;
+	accum += deltaTime; // au niveau de la pause : pas besoin d'une clock avec getelapsedtime, accum qui est un chronomètre s'en charge tout seul
 
 	if (accum > 1)
 	{
@@ -52,9 +52,9 @@ void Enemy::Update(float deltaTime) {
 			segment = 0;
 		}
 
-		switch (segment) {
+		switch (segment) { // le switch sert à l'animation, le changement de row correspond à la texture à utiliser dans characters.png
 		case 0:
-		case 1:
+		case 1: // les cases sont doublés comme les points du vecteur
 			row = 6;
 			break;
 		case 2:
@@ -73,8 +73,8 @@ void Enemy::Update(float deltaTime) {
 	}
 
 	Vector2f mouvement = interp2d(data[segment], data[segment+1], accum);
-	body.setPosition(mouvement);
+	body.setPosition(mouvement); // on enclenche le mouvement
 
 	body.setTextureRect(anime.uvRect);
-	anime.Update(row, deltaTime, 0, 2);
+	anime.Update(row, deltaTime, 0, 2); // on anime
 };
