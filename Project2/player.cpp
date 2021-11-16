@@ -12,6 +12,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	anime(texture, imageCount, switchTime) {
 	this->speed = speed;
 	row = 0;
+	
 	isMoving = false;
 	body.setSize(sf::Vector2f(50.f, 70.f));
 	body.setPosition(100.f, 100.f);
@@ -83,15 +84,11 @@ void Player::Update(float deltaTime, bool attacking){
 	body.setTextureRect(anime.uvRect);
 	body.move(movement);
 	playerSword.setPosition(body.getPosition());
-
-	std::cout << anime.uvRect.left << " " << anime.uvRect.top << " " << endl;
 }
 
 void Player::drawPlayer(sf::RenderWindow& player, bool attacking){
 	player.draw(body);
 	if (attacking) {
-
 		player.draw(playerSword);
 	}
-	
 }

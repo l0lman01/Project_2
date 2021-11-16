@@ -15,8 +15,6 @@ public:
 	int row;
 	bool isMoving;
 	sf::RectangleShape body;
-	sf::Texture player_texture;
-	sf::Sprite player_sprite;
 	Animation anime;
 
 	std::vector<Vector2f> chemin;

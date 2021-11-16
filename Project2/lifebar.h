@@ -1,8 +1,12 @@
 #pragma once
 
-
-class lifebar : public sf::Drawable {
-	lifebar();
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
+class Lifebar{
+public:
+	
+	Lifebar();
+	void Update(sf::RectangleShape body);
+	void draw(sf::RenderWindow& window);
+private:
+	sf::RectangleShape LifebarBack;
+	sf::RectangleShape Life;
 };

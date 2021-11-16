@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "tilemap.h"
+#include "Tilemap.h"
 #include "Player.h"
 #include "Animation.h"
-#include "lifebar.h"
+#include "Lifebar.h"
 #include "Enemy.h"
 
 using namespace sf;
@@ -17,7 +17,7 @@ int main() {
     playerTexture.loadFromFile("characters.png");
     Player player(&playerTexture, Vector2u(12, 8), 0.25f, 100.0f);
     bool attacking = false;
-    
+
     Texture enemyTexture;
     enemyTexture.loadFromFile("characters.png");
     Enemy enemy(&enemyTexture, Vector2u(12, 8), 0.3f, 100.0f);
@@ -47,20 +47,20 @@ int main() {
                 window.close();
                 break;
             }
-
-
         }
-
         
         window.clear();
 
-        map.drawMap(window); //Afficher la map
+        //Afficher la map
+        map.drawMap(window); 
         
         //Update
+        player.playerHP.Update(player.body);
         player.Update(deltaTime, attacking);
         enemy.Update(deltaTime);
 
         //Draw
+        player.playerHP.draw(window);
         player.drawPlayer(window, attacking);
         enemy.drawEnemy(window);
 

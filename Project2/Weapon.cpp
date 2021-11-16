@@ -6,7 +6,7 @@ Weapon::Weapon(){
 	weaponTexture.loadFromFile("sword.png");
 	weapon = sf::Sprite(weaponTexture);
 	weapon.setOrigin(sf::Vector2f(0.5f, 5.0f));
-	weapon.setPosition(sf::Vector2f());
+	weapon.setScale(2.f, 2.f);
 }
 
 void Weapon::Attack(){
@@ -19,14 +19,12 @@ void Weapon::setAngle(int deg) {
 }
 
 void Weapon::Update(float delta, bool attacking){
-	if (elapsedTime < 40)
-	{
+	if (elapsedTime < 40){
 		angle += 4;
 		elapsedTime += delta;
 		weapon.setRotation(angle);
 	}
-	else
-	{
+	else{
 		elapsedTime = 0;
 	}
 }
@@ -35,7 +33,3 @@ void Weapon::draw(sf::RenderTarget& target, sf::RenderStates states) const{
 	states.transform *= getTransform();
 	target.draw(weapon, states);
 }
-
-//void Weapon::drawWeapon(sf::RenderWindow& weapon){
-//	weapon.draw(weaponBox);
-//}

@@ -6,7 +6,7 @@ public:
 	void Attack();
 	void setAngle(int deg);
 	void Update(float delta, bool attacking);
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const override; //sans override, Weapon est une class abstraite 
 protected:
 	int angle;
 	int startAngle;

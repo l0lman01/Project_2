@@ -149,20 +149,20 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="enemy.cpp" />
-    <ClCompile Include="lifebar.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Lifebar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="tilemap.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="lifebar.h" />
+    <ClInclude Include="Lifebar.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="tilemap.h" />
+    <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
