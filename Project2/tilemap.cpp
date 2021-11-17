@@ -2,7 +2,7 @@
 #include <map>
 #include <iostream>
 #include <string>
-#include "tilemap.h"
+#include "Tilemap.h"
 
 using namespace sf;
 using namespace std;

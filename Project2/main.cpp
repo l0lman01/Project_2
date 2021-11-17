@@ -1,9 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Tilemap.h"
-#include "Player.h"
 #include "Animation.h"
+#include "Tilemap.h"
+#include "Collision.h"
 #include "Lifebar.h"
+#include "Player.h"
 #include "Enemy.h"
 
 using namespace sf;
@@ -12,6 +13,8 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
 
     Tilemap map;
+
+    Collision collision;
 
     Texture playerTexture;
     playerTexture.loadFromFile("characters.png");
@@ -55,11 +58,13 @@ int main() {
         map.drawMap(window); 
         
         //Update
+        collision.Update(player);
         player.playerHP.Update(player.body);
         player.Update(deltaTime, attacking);
         enemy.Update(deltaTime);
 
         //Draw
+        collision.draw(window);
         player.playerHP.draw(window);
         player.drawPlayer(window, attacking);
         enemy.drawEnemy(window);
