@@ -23,7 +23,7 @@
 //	return false;
 //}
 
-std::set<std::string> notWalls = {
+std::set<std::string> wallKeys = {
 	"FL",
 	"PL",
 	"R1",
@@ -99,8 +99,8 @@ void Collision::findRestriction(sf::Vector2f diff){
 	}
 }
 
-void Collision::addWall(sf::Sprite& sprite, std::string key){
-	if (!notWalls.count(key)) {
+void Collision::addWall(sf::Sprite& sprite, std::string& key){
+	if (wallKeys.count(key)) {
 		walls.push_back(sprite.getGlobalBounds());
 	}
 }
@@ -117,7 +117,7 @@ sf::Vector2f Collision::applyRestriction(sf::Vector2f input) {
 	return input;
 }
 
-void Collision::Update(Player player){
+void Collision::Update(Player& player){
 	auto playerAABB = player.body.getGlobalBounds();
 	std::vector<sf::FloatRect> collided;
 	for (auto& wall : walls) {

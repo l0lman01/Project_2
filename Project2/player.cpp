@@ -12,7 +12,6 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	anime(texture, imageCount, switchTime) {
 	this->speed = speed;
 	row = 0;
-	
 	isMoving = false;
 	body.setSize(sf::Vector2f(50.f, 70.f));
 	body.setPosition(100.f, 100.f);
@@ -53,27 +52,27 @@ void Player::treat_key_press(Keyboard::Key key_code){
 }
 
 void Player::Update(float deltaTime, bool attacking){
-	sf::Vector2f movement(0.0f, 0.0f);
 
+	sf::Vector2f velocity(0.0f, 0.0f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		movement.x = -speed * deltaTime;
+		velocity.x = -speed * deltaTime;
 		row = 1;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		movement.x = speed * deltaTime;
+		velocity.x = speed * deltaTime;
 		row = 2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		movement.y = -speed * deltaTime;
+		velocity.y = -speed * deltaTime;
 		row = 3;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		movement.y = speed * deltaTime;
+		velocity.y = speed * deltaTime;
 		row = 0;
 	}
 
 
-	if (movement.x == 0.0f && movement.y == 0.0f) {
+	if (velocity.x == 0.0f && velocity.y == 0.0f) {
 		isMoving = false;
 		anime.Update(row, deltaTime, 4, 4);
 	}
@@ -81,8 +80,9 @@ void Player::Update(float deltaTime, bool attacking){
 			isMoving = true;
 			anime.Update(row, deltaTime, 3, 6);
 	}
+
 	body.setTextureRect(anime.uvRect);
-	body.move(movement);
+	body.move(velocity);
 	playerSword.setPosition(body.getPosition());
 }
 

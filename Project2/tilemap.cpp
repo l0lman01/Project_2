@@ -162,7 +162,7 @@ void Tilemap::load_level() {
                         tile.setPosition(vec2(scale * (i * 16), scale * (row * 16)));
                         tile.setScale(4, 4);
                         Tiles.push_back(tile);
-
+                        collision.addWall(tile, id);
                     }
                     auto tile_ground_add = ground;
                     tile_ground_add.setPosition(vec2(scale * (i * 16), scale * (row * 16)));

@@ -3,6 +3,7 @@
 #include "Weapon.h"
 #include"Lifebar.h"
 
+
 class Player: public sf::Transformable {
 public:
 	int lifePoints;

@@ -29,7 +29,7 @@ int main() {
     Clock clock;
 
     map.load_level();
-
+    collision.init();
 
     while (window.isOpen()){
         deltaTime = clock.restart().asSeconds();

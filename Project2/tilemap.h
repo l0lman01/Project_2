@@ -1,4 +1,5 @@
 #pragma once
+#include "Collision.h"
 
 class Tilemap {
 public:
@@ -8,4 +9,5 @@ public:
 	std::vector<sf::Sprite> groundTiles;
 protected:
 	sf::Texture tiles_texture;
+	Collision collision;
 };
