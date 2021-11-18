@@ -16,7 +16,6 @@ public:
 	sf::RectangleShape diag1;
 	bool stopLeft = false, stopRight = false, stopUp = false, stopDown = false;
 	std::set<std::string> wallKeys;
-
 	int findSide(sf::Vector2f norme);
 	directions findDirection(sf::Vector2f norme);
 	void findRestriction(sf::Vector2f diff);

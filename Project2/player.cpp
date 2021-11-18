@@ -81,6 +81,9 @@ void Player::Update(float deltaTime, bool attacking){
 			anime.Update(row, deltaTime, 3, 6);
 	}
 
+	//if (body.getGlobalBounds().intersect()) {
+	//	velocity = collision.applyRestriction(velocity);
+	//}
 	body.setTextureRect(anime.uvRect);
 	body.move(velocity);
 	playerSword.setPosition(body.getPosition());

@@ -2,8 +2,6 @@
 #include <string>
 #include "Collision.h"
 
-
-
 //Collision::Collision(sf::RectangleShape& body) :
 //	body(body){
 //
@@ -100,7 +98,7 @@ void Collision::findRestriction(sf::Vector2f diff){
 }
 
 void Collision::addWall(sf::Sprite& sprite, std::string& key){
-	if (wallKeys.count(key)) {
+	if (!wallKeys.count(key)) {
 		walls.push_back(sprite.getGlobalBounds());
 	}
 }
